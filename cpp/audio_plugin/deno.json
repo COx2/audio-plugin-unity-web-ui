@@ -1,0 +1,7 @@
+{
+    "tasks": {
+        "get:webview2": "deno run --allow-all ./tools/deno/nuget-dl.ts && deno run --allow-all ./tasks/deno/get-webview2.ts",
+        "configure:cmake": "deno run --allow-all ./tasks/deno/configure-cmake.ts",
+        "build:webviewbundle": "deno run --allow-all ./tasks/deno/build-webview-bundle.ts"
+    }
+}
