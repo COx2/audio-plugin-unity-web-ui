@@ -5,3 +5,6 @@ Temp/
 UserSettings/
 *.csproj
 *.sln
+
+# VSCode specific
+.vscode/
