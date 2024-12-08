@@ -1,0 +1,7 @@
+# Unity specific
+Library/
+Logs/
+Temp/
+UserSettings/
+*.csproj
+*.sln
