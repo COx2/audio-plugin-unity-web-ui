@@ -27,6 +27,7 @@ namespace
             { { "woff2" },  "font/woff2"               },
             { { "data"  },  "application/octet-stream" },
             { { "wasm"  },  "application/wasm" },
+            { { "webmanifest"  },  "text/webmanifest" },
         };
 
         if (const auto it = mimeMap.find(extension.toLowerCase()); it != mimeMap.end())
