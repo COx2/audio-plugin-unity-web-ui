@@ -31,8 +31,18 @@
 *.out
 *.app
 
+# Build folder
+build/
+builds/
+
+# install folder
+outputs/
+
 # macOS specific
 .DS_Store
+
+# nuget specific
+nuget/
 
 # Bundle data specific
 WebViewBundle.zip
