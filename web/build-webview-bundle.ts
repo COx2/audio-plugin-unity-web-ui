@@ -20,6 +20,10 @@ Deno.chdir(__file_directory);
 console.log("Root directory: " + __root_directory);
 console.log("Deno.cwd(): " + Deno.cwd());
 
+await Deno.copyFile("./binding/unity-binding-lib.js", "./dist/unity-binding-lib.js");
+await Deno.copyFile("./binding/juce-binding-impl.js", "./dist/juce-binding-impl.js");
+await Deno.copyFile("./binding/index.html", "./dist/index.html");
+
 Deno.chdir(__file_directory + "dist");
 
 await $`deno run --allow-write --allow-read --allow-net ${__root_directory}/tools/deno/mc-zip.ts ${__root_directory}/cpp/audio_plugin/resources/WebViewBundle.zip ./`
