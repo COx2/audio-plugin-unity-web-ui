@@ -1,5 +1,7 @@
-const gainSliderState = getSliderState("gain");
-const invertPhaseToggleState = getToggleState("invertPhase");
+import * as Juce from "./juce-framework-frontend/index.js";
+
+const gainSliderState = Juce.getSliderState("gain");
+const invertPhaseToggleState = Juce.getToggleState("invertPhase");
 
 bindFunction('js_SetParameter', 
     (id_utf8, value) => {
