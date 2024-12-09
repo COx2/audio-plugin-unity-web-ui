@@ -16,4 +16,4 @@ const __root_directory = fromFileUrl(new URL("../../../../", import.meta.url));
 Deno.chdir(__root_directory);
 
 console.log("Deno.cwd(): " + Deno.cwd());
-await $`deno run --allow-all ${__root_directory}/web/build-webview-bundle.ts`;
+await $`deno run --allow-all ${__root_directory}/webview/build-webview-bundle.ts`;
