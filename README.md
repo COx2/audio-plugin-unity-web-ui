@@ -48,3 +48,10 @@ graph TB
     jucejs <--> |"bind function"| vst3
     vst3 <--> |"Load Plugin"| daw
 ```
+
+## Attention Regarding Licenses
+
+If you are using this project to create and distribute software, please ensure compliance with the licenses of the following software libraries:
+
++ [JUCE](https://github.com/juce-framework/JUCE)  
++ [Unity](https://unity.com/)
