@@ -35,3 +35,7 @@ await fs.copy("./binding/page/index.html", "./dist/index.html", { overwrite: tru
 Deno.chdir(__file_directory + "dist");
 
 await $`deno run --allow-write --allow-read --allow-net ${__root_directory}/tools/deno/mc-zip.ts ${__root_directory}/cpp/audio_plugin/resources/WebViewBundle.zip ./`
+
+Deno.chdir(__file_directory);
+
+await Deno.remove(__file_directory + "dist", { recursive: true });
