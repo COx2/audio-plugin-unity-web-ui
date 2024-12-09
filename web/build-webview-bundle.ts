@@ -21,17 +21,37 @@ Deno.chdir(__file_directory);
 console.log("Root directory: " + __root_directory);
 console.log("Deno.cwd(): " + Deno.cwd());
 
-await fs.copy("./binding/unity_web_build/Build", "./dist/Build", { overwrite: true });
-await fs.copy("./binding/unity_web_build/TemplateData", "./dist/TemplateData", { overwrite: true });
-await fs.copy("./binding/unity_web_build/manifest.webmanifest", "./dist/manifest.webmanifest", { overwrite: true });
-await fs.copy("./binding/unity_web_build/ServiceWorker.js", "./dist/ServiceWorker.js", { overwrite: true });
+await fs.copy("./source/juce-framework-frontend", "./dist/juce-framework-frontend", { overwrite: true });
 
-await fs.copy("./binding/juce-framework-frontend", "./dist/juce-framework-frontend", { overwrite: true });
+await fs.copy("./source/binding", "./dist/binding", { overwrite: true });
 
-await fs.copy("./binding/page/unity-binding-lib.js", "./dist/unity-binding-lib.js", { overwrite: true });
-await fs.copy("./binding/page/juce-binding-impl.js", "./dist/juce-binding-impl.js", { overwrite: true });
-await fs.copy("./binding/page/unity-loader.js", "./dist/unity-loader.js", { overwrite: true });
-await fs.copy("./binding/page/index.html", "./dist/index.html", { overwrite: true });
+await fs.copy("./source/unity_web_build/Build", "./dist/Build", { overwrite: true });
+await fs.copy("./source/unity_web_build/TemplateData", "./dist/TemplateData", { overwrite: true });
+await fs.copy("./source/unity_web_build/manifest.webmanifest", "./dist/manifest.webmanifest", { overwrite: true });
+await fs.copy("./source/unity_web_build/ServiceWorker.js", "./dist/ServiceWorker.js", { overwrite: true });
+await fs.copy("./source/unity_web_build/index.html", "./dist/index.html", { overwrite: true });
+
+// Modify HTML to insert .js for binding
+{
+    const inputPath = "./source/unity_web_build/index.html";
+    const outputPath = "./dist/index.html";
+    
+    const content = await Deno.readTextFile(inputPath);
+    
+    const scriptsToAdd = `
+    <script src="./binding/unity-binding-lib.js"></script>
+    <script type="module" src="./juce-framework-frontend/check_native_interop.js"></script>
+    <script type="module" src="./juce-framework-frontend/index.js"></script>
+    <script type="module" src="./binding/juce-binding-impl.js"></script>`;
+    
+    const modifiedContent = content.replace(
+        /(<\/div>)\s*(<script>)/,
+        `$1${scriptsToAdd}\n    $2`
+    );
+
+    await Deno.writeTextFile(outputPath, modifiedContent);
+    console.log(`Modified HTML written to ${outputPath}`);
+}
 
 Deno.chdir(__file_directory + "dist");
 

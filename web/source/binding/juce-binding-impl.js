@@ -1,4 +1,4 @@
-import * as Juce from "./juce-framework-frontend/index.js";
+import * as Juce from "../juce-framework-frontend/index.js";
 
 const gainSliderState = Juce.getSliderState("gain");
 const invertPhaseToggleState = Juce.getToggleState("invertPhase");
