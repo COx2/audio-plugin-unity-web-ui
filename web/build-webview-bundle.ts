@@ -13,16 +13,17 @@ import { fromFileUrl } from "https://deno.land/std/path/mod.ts";
 console.log("Deno.cwd(): " + Deno.cwd());
 
 const __file_directory = fromFileUrl(new URL("./", import.meta.url));
-const __web_directory = fromFileUrl(new URL("./", import.meta.url));
-const __root_directory = fromFileUrl(new URL("../", import.meta.url));
+const __web_directory = fromFileUrl(new URL("../../", import.meta.url));
+const __root_directory = fromFileUrl(new URL("../../../", import.meta.url));
 Deno.chdir(__file_directory);
 
 console.log("Root directory: " + __root_directory);
 console.log("Deno.cwd(): " + Deno.cwd());
 
-await Deno.copyFile("./binding/unity-binding-lib.js", "./dist/unity-binding-lib.js");
-await Deno.copyFile("./binding/juce-binding-impl.js", "./dist/juce-binding-impl.js");
-await Deno.copyFile("./binding/index.html", "./dist/index.html");
+await Deno.copyFile("./binding/juce-framework-frontend", "./dist/juce-framework-frontend");
+await Deno.copyFile("./binding/page/*", "./dist/*");
+await Deno.copyFile("./binding/page/juce-binding-impl.js", "./dist/juce-binding-impl.js");
+await Deno.copyFile("./binding/page/index.html", "./dist/index.html");
 
 Deno.chdir(__file_directory + "dist");
 
