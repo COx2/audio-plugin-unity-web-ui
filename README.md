@@ -28,7 +28,7 @@ graph TB
 graph TB
     subgraph Native["VST3 Plugin"]
         subgraph Browser["WebView UI"]
-            unity_web["Unity Webビルド<br/>UI Components"]
+            unity_web["Unity Web build<br/>UI Components"]
             jslib_p["plugin.jslib<br/>binding method declaration<br/>emscripten::__postset execution"]
             libjs["unity-binding-lib.js"]
             mainjs["juce-binding-impl.js"]
