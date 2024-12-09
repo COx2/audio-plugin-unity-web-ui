@@ -30,11 +30,18 @@ await fs.copy("./binding/juce-framework-frontend", "./dist/juce-framework-fronte
 
 await fs.copy("./binding/page/unity-binding-lib.js", "./dist/unity-binding-lib.js", { overwrite: true });
 await fs.copy("./binding/page/juce-binding-impl.js", "./dist/juce-binding-impl.js", { overwrite: true });
+await fs.copy("./binding/page/unity-loader.js", "./dist/unity-loader.js", { overwrite: true });
 await fs.copy("./binding/page/index.html", "./dist/index.html", { overwrite: true });
 
 Deno.chdir(__file_directory + "dist");
 
-await $`deno run --allow-write --allow-read --allow-net ${__root_directory}/tools/deno/mc-zip.ts ${__root_directory}/cpp/audio_plugin/resources/WebViewBundle.zip ./`
+const __bundle_file_path= __root_directory + "/cpp/audio_plugin/resources/WebViewBundle.zip";
+
+if(await fs.exists(__bundle_file_path)) {
+    await Deno.remove(__bundle_file_path);
+}
+
+await $`deno run --allow-write --allow-read --allow-net ${__root_directory}/tools/deno/mc-zip.ts ${__bundle_file_path} ./`
 
 Deno.chdir(__file_directory);
 
